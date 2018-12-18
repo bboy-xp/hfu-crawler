@@ -21,5 +21,4 @@ module.exports = async (params, ctx) => {
   });
 
   // console.log(loginRes.data);
-  console.log(loginRes.data);
 };

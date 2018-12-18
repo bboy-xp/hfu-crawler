@@ -19,5 +19,44 @@ module.exports = async (params, ctx) => {
     },
   });
 
-  console.log(getCourseRes.data.data);
+  //  STIMEZC   周次
+  //  XQ        学期
+  //  JCZ       星期和上课节次
+  //  XH        学号
+  //  XN        学年
+  //  BJDM      这个编号都是一样的
+  //  XM        姓名
+  //  DSZ       单双周
+  //  JSM       教室码
+  //  ZWMC      中文名称
+  //  ZCXX      周次信息
+  //  KCID      课程ID
+  //  JCXX      节次信息
+  //  MC        教室名称
+
+  const getCourseResArr = getCourseRes.data.data;
+  const filterCoursesArr = [];
+  // 筛选不必要的课
+  getCourseResArr.map((e, i) => {
+    // 先删除没有教室的课程
+    if(e.JSM !== "                    ") {
+      // console.log(e.JCZ);
+      let isHaveCourse = false;
+      let isHaveCourseIndex;
+      for (let j = 0; j < filterCoursesArr.length; j++) {
+        if(filterCoursesArr[j].JCZ === e.JCZ) {
+          isHaveCourse = true;
+          isHaveCourseIndex = j;
+        }
+      }
+      // console.log(isHaveCourse, isHaveCourseIndex);
+      if(isHaveCourse) {
+        filterCoursesArr[isHaveCourseIndex] = e;
+      }else {
+        filterCoursesArr.push(e);
+      }
+    }
+  })
+  console.log(filterCoursesArr.length);
+  return (getCourseRes.data.data);
 };

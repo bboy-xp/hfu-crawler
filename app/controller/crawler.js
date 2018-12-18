@@ -38,9 +38,10 @@ class CrawlerController extends Controller {
         xq: '0'
       }
     }
-    await getCourse(getCourseParams);
-
+    const getCourseRes = await getCourse(getCourseParams);
+    
     ctx.body = 'ok';
+
   }
 }
 module.exports = CrawlerController;
