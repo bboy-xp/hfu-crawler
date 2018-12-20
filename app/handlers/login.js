@@ -3,7 +3,7 @@ const axios = require('axios');
 module.exports = async (params, ctx) => {
   const { cookie, loginData } = params;
   const { username, password } = loginData;
-  console.log(username, password);
+  // console.log(username, password);
 
   const loginRes = await axios({
     url: 'http://weixin.hrbfu.edu.cn/WeiXinJR/mobile-app/mobileNewService!find_chengjiWeChat_xn.action',
